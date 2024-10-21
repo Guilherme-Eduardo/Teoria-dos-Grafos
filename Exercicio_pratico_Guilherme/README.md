@@ -20,3 +20,14 @@ O programa deve construir um multi-grafo representando a molécula lida, onde v�
 O exercício deve ser entregue de forma individual, mas o(a) colega pode ser consultado(a) para esclarecer dúvidas do código original. Um arquivo **.zip** deve ser entregue contendo todos os arquivos do programa, Makefile e LEIAME.
 
 Arquivos no formato  **.mol**  pode ser obtidos (e visualizados em 3D) no site  [https://hmdb.ca/metabolites](https://hmdb.ca/metabolites). Um bom exemplo para testes é o arquivo  **adenine.mol**
+
+
+# Mudanças realizadas
+
+## testa_grafo.c:
+Adição de controle de casos em digitações de números inválidos (vértice menor ou igual a zero e aresta envolvendo vértices inexistentes) Adição de "printf" antes das escritas, indicando o que deve ser recebido, e em caso de erro.
+
+## grafo.c:
+Adição da função subgrafo, a qual transforma o grafo G em um grafo induzido de acordo com os vértices do vetor X Adição de uma função de busca utilizada na função SUBGRAFO dando a informação se um vértice deve ou não ser removido para formar o grafo induzido. Adição de um inteiro PESO na estrutura de dados da aresta. Mudança da função IMPRIME_ARESTA, adicionando a nova informação da aresta, o seu peso, entre colchetes antes dos vértices. Adição da função ATUALIZA_PESO a qual atribui o peso na aresta passada por parâmetro.
+## lista.h e lista.c:
+ Adição da função "percorre_lista", a qual aplica uma função ACAO em todos os nodos da lista l. Ela foi criada para poder mudar os pesos das aretas ao ter uma aresta ou vertice removidos ou uma nova aresta inserida.
