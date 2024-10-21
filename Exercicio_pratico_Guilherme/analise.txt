@@ -1,0 +1,111 @@
+Testes
+Vertices: 15
+Arestas: 16
+Nome do elemento: N
+Gravando elemento: N
+Nome do elemento: C
+Gravando elemento: C
+Nome do elemento: N
+Gravando elemento: N
+Nome do elemento: C
+Gravando elemento: C
+Nome do elemento: N
+Gravando elemento: N
+Nome do elemento: C
+Gravando elemento: C
+Nome do elemento: N
+Gravando elemento: N
+Nome do elemento: C
+Gravando elemento: C
+Nome do elemento: N
+Gravando elemento: N
+Nome do elemento: C
+Gravando elemento: C
+Nome do elemento: H
+Gravando elemento: H
+Nome do elemento: H
+Gravando elemento: H
+Nome do elemento: H
+Gravando elemento: H
+Nome do elemento: H
+Gravando elemento: H
+Nome do elemento: H
+Gravando elemento: H
+
+Vertices: <id> - <Átomo> - [grau]( <fronteira> )
+Vertices: 15 - <H> - [0]( ) 14 - <H> - [0]( ) 13 - <H> - [0]( ) 12 - <H> - [0]( ) 11 - <H> - [0]( ) 10 - <C> - [0]( ) 9 - <N> - [0]( ) 8 - <C> - [0]( ) 7 - <N> - [0]( ) 6 - <C> - [0]( ) 5 - <N> - [0]( ) 4 - <C> - [0]( ) 3 - <N> - [0]( ) 2 - <C> - [0]( ) 1 - <N> - [0]( ) 
+Arestas: <id> - [<peso>]:{u,v}
+Arestas: 
+Vertice1: 1
+Vertice2: 2
+Tipo: 1
+N° ID: 1
+Vertice1: 2
+Vertice2: 3
+Tipo: 2
+N° ID: 2
+N° ID: 2
+Vertice1: 3
+Vertice2: 4
+Tipo: 1
+N° ID: 3
+Vertice1: 4
+Vertice2: 5
+Tipo: 2
+N° ID: 4
+N° ID: 4
+Vertice1: 5
+Vertice2: 6
+Tipo: 1
+N° ID: 5
+Vertice1: 6
+Vertice2: 7
+Tipo: 1
+N° ID: 6
+Vertice1: 7
+Vertice2: 8
+Tipo: 2
+N° ID: 7
+N° ID: 7
+Vertice1: 8
+Vertice2: 9
+Tipo: 1
+N° ID: 8
+Vertice1: 9
+Vertice2: 10
+Tipo: 1
+N° ID: 9
+Vertice1: 10
+Vertice2: 2
+Tipo: 1
+N° ID: 10
+Vertice1: 10
+Vertice2: 6
+Tipo: 2
+N° ID: 11
+N° ID: 11
+Vertice1: 1
+Vertice2: 11
+Tipo: 1
+N° ID: 12
+Vertice1: 1
+Vertice2: 12
+Tipo: 1
+N° ID: 13
+Vertice1: 4
+Vertice2: 13
+Tipo: 1
+N° ID: 14
+Vertice1: 8
+Vertice2: 14
+Tipo: 1
+N° ID: 15
+Vertice1: 9
+Vertice2: 15
+Tipo: 1
+N° ID: 16
+
+Vertices: <id> - <Átomo> - [grau]( <fronteira> )
+Vertices: 15 - <H> - [1]( 20 - [4]:{9,15} ) 14 - <H> - [1]( 19 - [5]:{8,14} ) 13 - <H> - [1]( 18 - [5]:{4,13} ) 12 - <H> - [1]( 17 - [4]:{1,12} ) 11 - <H> - [1]( 16 - [4]:{1,11} ) 10 - <C> - [4]( 15 - [8]:{10,6} 14 - [8]:{10,6} 13 - [8]:{10,2} 12 - [7]:{9,10} ) 9 - <N> - [3]( 20 - [4]:{9,15} 12 - [7]:{9,10} 11 - [7]:{8,9} ) 8 - <C> - [4]( 19 - [5]:{8,14} 11 - [7]:{8,9} 10 - [7]:{7,8} 9 - [7]:{7,8} ) 7 - <N> - [3]( 10 - [7]:{7,8} 9 - [7]:{7,8} 8 - [7]:{6,7} ) 6 - <C> - [4]( 15 - [8]:{10,6} 14 - [8]:{10,6} 8 - [7]:{6,7} 7 - [7]:{5,6} ) 5 - <N> - [3]( 7 - [7]:{5,6} 6 - [7]:{4,5} 5 - [7]:{4,5} ) 4 - <C> - [4]( 18 - [5]:{4,13} 6 - [7]:{4,5} 5 - [7]:{4,5} 4 - [7]:{3,4} ) 3 - <N> - [3]( 4 - [7]:{3,4} 3 - [7]:{2,3} 2 - [7]:{2,3} ) 2 - <C> - [4]( 13 - [8]:{10,2} 3 - [7]:{2,3} 2 - [7]:{2,3} 1 - [7]:{1,2} ) 1 - <N> - [3]( 17 - [4]:{1,12} 16 - [4]:{1,11} 1 - [7]:{1,2} ) 
+Arestas: <id> - [<peso>]:{u,v}
+Arestas: 20 - [4]:{9,15} 19 - [5]:{8,14} 18 - [5]:{4,13} 17 - [4]:{1,12} 16 - [4]:{1,11} 15 - [8]:{10,6} 14 - [8]:{10,6} 13 - [8]:{10,2} 12 - [7]:{9,10} 11 - [7]:{8,9} 10 - [7]:{7,8} 9 - [7]:{7,8} 8 - [7]:{6,7} 7 - [7]:{5,6} 6 - [7]:{4,5} 5 - [7]:{4,5} 4 - [7]:{3,4} 3 - [7]:{2,3} 2 - [7]:{2,3} 1 - [7]:{1,2} 
