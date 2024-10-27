@@ -1,0 +1,7 @@
+3 primeiras linhas ignoradas
+
+4 linha - 1:vertice(atomos) 2:aresta(ligações)
+
+as próximas n linhas: coluna 4 átomo ***adição de string (3 letras e \0) nos vertices
+as proximas m linhas: ligações - duas primeiras atomos ligados e terceira o tipo da ligação (1, 2, 3)
+restante ignora.
