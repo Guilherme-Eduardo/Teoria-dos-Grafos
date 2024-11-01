@@ -285,27 +285,3 @@ void imprime_aresta(aresta e) {
   printf("%d - [%d]:{%d,%d}", aresta_id(e), e->peso, u_id, v_id);
 
 }
-
-/******************************************** */
-
-// Funcao responsavel por separar as palavras dependendo de um char separador
-char *separa(char *linha, char separador) {
-    if (!linha) {
-      fprintf (stderr, "String vazia\n");
-      return NULL; // Se a linha passada por parametro já for nula
-    }
-
-    char *posSeparador;
-    posSeparador = strchr(linha, separador);
-
-    if (!posSeparador) { // Se nao encontrar o separador, verifica se nao chegou na ultima parte a ser lida (antes do \n)
-        if (strlen(linha))
-          return linha;
-        else {
-            fprintf (stderr, "String nula\n");
-            return NULL;
-        }
-    }
-    *posSeparador = '\0'; // Substitui o separador por um '\0' que indicara o final da string
-    return linha;
-}
