@@ -87,15 +87,15 @@ void destroi_grafo(grafo G) {
     return;
   }
 
-  /*Remove todas as arestas*/
-  while (!vazio(arestas(G))) {    
-    remove_vertice(vertice_id(topo(arestas(G))), G);
-  }
-
   /*Remove todos os vértices*/
   while (!vazio(vertices(G))) {
     remove_vertice(vertice_id(topo(vertices(G))), G);      
   }
+
+  /*Remove todas as arestas*/
+  // while (!vazio(arestas(G))) {    
+  //   remove_aresta(aresta_id(topo(arestas(G))), G);
+  // }
 
   free (vertices(G));
   free (arestas (G));
@@ -105,18 +105,17 @@ void destroi_grafo(grafo G) {
 // cria novo vertice com id <id>, rotulo <rotulo>, particao <particao>
 // e adiciona ao grafo G
 void adiciona_vertice(int id, char *rotulo, int particao, grafo G) {
+  
   if (!G || !rotulo) {
     fprintf (stderr, "Erro ao acessar o grafo G.\n");
     return;
   }
 
   vertice novo_vertice = (vertice) malloc (sizeof (t_vertice));
-
   if (!novo_vertice) {
     fprintf (stderr, "Erro ao alocar vértice.\n");
     return;
   }
-
   novo_vertice->id = id;
   novo_vertice->custo = 0;
   novo_vertice->particao = particao;
@@ -125,6 +124,9 @@ void adiciona_vertice(int id, char *rotulo, int particao, grafo G) {
   novo_vertice->fronteira_saida = cria_lista();
   novo_vertice->pai = NULL;
   strcpy (novo_vertice->rotulo, rotulo);
+
+  empilha(novo_vertice, vertices(G));
+
   return;  
 }
 
@@ -142,12 +144,12 @@ void remove_vertice(int id, grafo G) {
   /*Verifica Remove as arestas associadas ao vertice que está sendo removido (entrada/saida) */
   while (!vazio (fronteira_entrada(v))) {
     aresta a = desempilha (fronteira_entrada(v));
-    remove_aresta (a, G);
+    remove_aresta (aresta_id (a), G);
   }
 
   while (!vazio (fronteira_saida(v))) {
     aresta a = desempilha (fronteira_saida(v));
-    remove_aresta (a, G);
+    remove_aresta (aresta_id(a), G);
   }
 
   free (fronteira_entrada(v));
@@ -175,7 +177,7 @@ void adiciona_aresta(int id, int u_id, int v_id, grafo G) {
   nova_aresta->u = busca_chave_int(u_id, vertices(G), (int_f_obj) vertice_id);
   nova_aresta->v = busca_chave_int(v_id, vertices(G), (int_f_obj) vertice_id);
 
-  if (!vertice_u(nova_aresta) || vertice_v(nova_aresta)) {
+  if (!vertice_u(nova_aresta) || !vertice_v(nova_aresta)) {
     fprintf (stderr, "Erro ao adicionar nova aresta.\n");
     return;
   }
@@ -200,14 +202,9 @@ void remove_aresta(int id, grafo G) {
   aresta a = remove_chave_int (id, arestas(G), (int_f_obj) aresta_id);
 
   /*Remove a aresta dos vertices associados a ela (tanto na entrada quanto na saida)*/
-  while (vertice_u(a)) {
-    remove_chave_int (aresta_id(a), fronteira_entrada (vertice_u(a)), (int_f_obj) aresta_id);
-    remove_chave_int (aresta_id(a), fronteira_saida (vertice_u(a)), (int_f_obj) aresta_id);
-  }
-  while (vertice_v(a)) {
-    remove_chave_int (aresta_id(a), fronteira_entrada (vertice_v(a)), (int_f_obj) aresta_id);
-    remove_chave_int (aresta_id(a), fronteira_saida (vertice_v(a)), (int_f_obj) aresta_id);
-  }
+  remove_chave_int (aresta_id(a), fronteira_saida (vertice_u(a)), (int_f_obj) aresta_id);
+  remove_chave_int (aresta_id(a), fronteira_entrada (vertice_v(a)), (int_f_obj) aresta_id);
+
   free (a);
   return;
 }
@@ -231,7 +228,7 @@ int grau_saida(vertice v) {
 
 // imprime o grafo G
 void imprime_grafo(grafo G) {
-  /* imprimindo apenas a estrutura do grafo
+  // imprimindo apenas a estrutura do grafo
   printf("%d\n", grafo_id(G));
   printf("\nVertices: ");
   imprime_lista(vertices(G), (void_f_obj) imprime_vertice);
@@ -239,8 +236,8 @@ void imprime_grafo(grafo G) {
   imprime_lista(arestas(G), (void_f_obj) imprime_aresta);
   printf("\n");
   printf("\nEstrutura:\n");
-  */
-  imprime_lista(arestas(G), (void_f_obj) imprime_estrutura_aresta);
+  
+  //imprime_lista(arestas(G), (void_f_obj) imprime_estrutura_aresta);
 }
 
 // imprime o vertice v
