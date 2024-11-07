@@ -11,6 +11,45 @@
 #include "rede_metabolica.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define REA 1
+#define MET 2
+#define ENZ 3
+
+
+/* Funcao responsavel por separar as palavras dependendo de um char separador*/
+char *separa(char *linha, char separador) {
+    if (!linha) {
+      fprintf (stderr, "String vazia\n");
+      return NULL; // Se a linha passada por parametro já for nula
+    }
+
+    char *posSeparador;
+    posSeparador = strchr(linha, separador);
+
+    if (!posSeparador) { // Se nao encontrar o separador, verifica se nao chegou na ultima parte a ser lida (antes do \n)
+        if (strlen(linha))
+          return linha;
+        else {            
+            return NULL;
+        }
+    }
+    *posSeparador = '\0'; // Substitui o separador por um '\0' que indicara o final da string
+    return linha;
+}
+
+
+/*void liga_componentes (int idVertice, int idAresta, char nomeMolecula, 
+                    vertice verticeU, vertice verticeV, grafo G, ) {
+
+  adiciona_vertice(++idVertice, nomeMolecula, ENZ, G);
+  adiciona_aresta(idAresta++, vertice_id(reacaoAtual), idVertice, G);
+
+}
+*/
+
+/*************************************************************/
 
 // Cria grafo G e lê a rede metabólica do arquivo apontado por <f_met>,
 // adicionando em G as reações, enzimas e metabólitos, com as respectivas conexões.
@@ -19,7 +58,77 @@ grafo le_rede_metabolica(FILE *f_met) {
   
   grafo G = cria_grafo(1);
   
-  //TODO: implementar...
+  char linha[1024];
+  char* nomeMolecula;
+  int idVertice = 1;
+  int idAresta = 1;
+  vertice reacaoAtual;
+
+  /*Dividi essa funcao em dois whiles
+    1° antes do sinal de "=>"
+    2° depois do final de "=>"
+    Se prefrir, da pra fazer 2 funcoes
+    Ex: le_reacao e forma_produto_da_reacao();
+  */
+ 
+  /*Ler até o fim do arquivo*/
+  while (fgets(linha, sizeof(linha), f_met)) {
+    /*Leio a linha até o char ' = ' */
+    fscanf (f_met,"%[^=]", linha);    
+    nomeMolecula = separa(linha, ' ');
+    
+    /*Encontrou o fim*/
+    if (strncmp(nomeMolecula, "FIM", 3) == 0) {
+        break;
+    }
+
+    /*Adiciona o vertice da reação no Grafo*/
+    printf ("Criando vertice: %s\n", nomeMolecula);      
+    adiciona_vertice (idVertice, nomeMolecula, REA, G);
+
+    /* Obtenho ele para associar os outros vertices da reação*/
+    reacaoAtual = busca_chave_int (idVertice, vertices(G), (int_f_obj) vertice_id);
+
+    /*Vou lendo até encontrar outras moleculas*/
+    while (nomeMolecula) {
+      nomeMolecula = separa (nomeMolecula + strlen(nomeMolecula) + 1, ' '); 
+
+      if(nomeMolecula[0] == 'M') {
+        /* conecto os vertices MET ----> REA*/
+        printf ("Criando vertice: %s\n", nomeMolecula);
+        adiciona_vertice(++idVertice, nomeMolecula, MET, G);
+        adiciona_aresta(idAresta++,idVertice, vertice_id(reacaoAtual), G);
+
+      }
+      if (nomeMolecula[0] == '_') {        
+        /* conecto os vertices ENZ ----> REA*/
+        printf ("Criando vertice: %s\n", nomeMolecula);        
+        adiciona_vertice(++idVertice, nomeMolecula, ENZ, G);
+        adiciona_aresta(idAresta++,idVertice, vertice_id(reacaoAtual), G);
+      }
+      nomeMolecula = separa (nomeMolecula + strlen(nomeMolecula) + 1, ' '); 
+    }
+
+    /* Segunda parte: Os produtos da reação == REA ---> MET(Produtos) */
+    fscanf (f_met,"%[^.]", linha);
+    nomeMolecula = separa (linha, ' ');
+
+    while (nomeMolecula) {
+      if(nomeMolecula[0] == 'M') {
+        /*Conecto os vertices REA ----> MET*/        
+        vertice verticeU = busca_chave_str(nomeMolecula, vertices(G),(str_f_obj) vertice_rotulo);
+        if (!verticeU) {
+          printf ("Criando vertice: %s\n", nomeMolecula);
+          adiciona_vertice(++idVertice, nomeMolecula, MET, G);
+          adiciona_aresta(idAresta++, vertice_id(reacaoAtual), idVertice, G);
+        }
+        else {
+          adiciona_aresta(idAresta++, vertice_id(reacaoAtual), vertice_id (verticeU), G);
+        }
+      }
+      nomeMolecula = separa (nomeMolecula + strlen(nomeMolecula) + 1, ' '); 
+    }
+  }
   
   return G;
 }
@@ -29,9 +138,24 @@ grafo le_rede_metabolica(FILE *f_met) {
 // Devolve a lista de vértices L.
 lista le_substratos(grafo G) {
 
+
   lista L = cria_lista();
-  
-  //TODO: implementar...
+  char linha[1024];
+  char* substrato;
+  int id = 1;
+
+  scanf ("%s",linha);
+  substrato = separa(linha, ' ');
+
+  /*Eu estou criando e adicionando o vertice tanto para a lista
+    quanto para o Grafo G. Creio que seja isso*/
+  while (substrato && !strcmp(substrato, "FIM")) {
+    adiciona_vertice (id, substrato, MET, G);
+    vertice novo_vertice = busca_chave_int (id, vertices(G), (int_f_obj) vertice_id);
+    empilha (novo_vertice, L);
+    substrato = separa (substrato + strlen (substrato) + 1, ' '); 
+    id++;
+  }
   
   return L;
 }
