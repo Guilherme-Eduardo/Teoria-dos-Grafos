@@ -124,7 +124,6 @@ void adiciona_vertice(int id, char *rotulo, int particao, grafo G) {
   novo_vertice->fronteira_saida = cria_lista();
   novo_vertice->pai = NULL;
   strcpy (novo_vertice->rotulo, rotulo);
-
   empilha(novo_vertice, vertices(G));
 
   return;  

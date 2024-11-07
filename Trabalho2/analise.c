@@ -23,13 +23,13 @@ int main(int argc, char **argv) {
   imprime_grafo(G);
   
   // le substratos iniciais
-  lista substratos = le_substratos(G);
+  //lista substratos = le_substratos(G);
 
   // processa rede metabolica
-  processa(substratos, G);
+  //processa(substratos, G);
   
   // imprime resultados
-  imprime_reacoes_minimas(G);
+  //imprime_reacoes_minimas(G);
   
   return 0;
 }
