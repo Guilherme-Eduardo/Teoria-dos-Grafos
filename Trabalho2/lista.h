@@ -76,6 +76,12 @@ obj busca_min(lista l, int f_chave(obj c));
 // [a funcao <f_chave(c)> deve devolver a chave do objeto c]
 obj remove_min(lista l, int f_chave(obj c));
 
+//percorre uma lista executando a funcao de parâmetro
+void percorre (lista l, void acao (obj c));
+
+// faz um somatorio de acordo com a função passada como parâmetro
+int percorreSoma (lista l, int acao(obj c));
+
 // imprime a lista
 // [a funcao <imprime(c)> deve imprimir o objeto c]
 void imprime_lista(lista l, void imprime(obj c));

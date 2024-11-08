@@ -170,6 +170,35 @@ obj remove_min(lista l, int f_chave(obj c)) {
   return c;
 }
 
+
+void percorre (lista l, void acao(obj c)) {
+  
+  no n;
+  
+  n = primeiro_no(l);
+  while (n) {
+    acao (conteudo(n));
+    n = proximo(n);
+  }
+}
+
+
+int percorreSoma (lista l, int acao(obj c)) {
+  
+  int soma;
+  no n;
+  
+  soma = 0;
+  n = primeiro_no(l);
+  while (n) {
+    soma += acao (conteudo(n));
+    n = proximo(n);
+  }
+
+  return soma;
+}
+
+
 // imprime a lista
 // [a funcao <imprime(c)> deve imprimir o objeto c]
 void imprime_lista(lista l, void imprime_conteudo(obj c)) {

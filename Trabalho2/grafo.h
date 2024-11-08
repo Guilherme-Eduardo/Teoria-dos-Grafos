@@ -88,6 +88,7 @@ void adiciona_aresta(int id, int u_id, int v_id, grafo G);
 // remove aresta com id <id> do grafo G e a destroi
 void remove_aresta(int id, grafo G);
 
+
 //---------------------------------------------------------
 // funcoes para operacoes com o grafo pronto:
 
@@ -103,6 +104,7 @@ void imprime_vertice(vertice v);
 
 // imprime a aresta e
 void imprime_aresta(aresta e);
+
 
 // imprime aresta e no formato de entrada para
 // https://graphonline.ru/en/create_graph_by_edge_list
