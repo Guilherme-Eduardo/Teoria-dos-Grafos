@@ -40,6 +40,25 @@ char *separa(char *linha, char separador) {
 }
 
 
+int ehEnzima (vertice V) {
+
+  if (vertice_particao (V) == ENZ)
+    return 1;
+  
+  return 0;  
+}
+
+
+int qtd_enzima (vertice v) {
+
+  if (vertice_particao != REA)
+    return 0;
+
+  return percorresoma (fronteira_entrada(v), ehEnzima);
+}
+
+
+
 /*void liga_componentes (int idVertice, int idAresta, char nomeMolecula, 
                     vertice verticeU, vertice verticeV, grafo G, ) {
 
@@ -98,8 +117,8 @@ grafo le_rede_metabolica(FILE *f_met) {
         printf ("Criando vertice: %s\n", nomeMolecula);
         adiciona_vertice(++idVertice, nomeMolecula, MET, G);
         adiciona_aresta(idAresta++,idVertice, vertice_id(reacaoAtual), G);
-
       }
+
       if (nomeMolecula[0] == '_') {        
         /* conecto os vertices ENZ ----> REA*/
         printf ("Criando vertice: %s\n", nomeMolecula);        
@@ -140,9 +159,8 @@ lista le_substratos(grafo G) {
 
 
   lista L = cria_lista();
-  char linha[1024];
-  char* substrato;
-  int id = 1;
+  vertice v;
+  char linha[1024], *substrato;
 
   scanf ("%s",linha);
   substrato = separa(linha, ' ');
@@ -150,11 +168,9 @@ lista le_substratos(grafo G) {
   /*Eu estou criando e adicionando o vertice tanto para a lista
     quanto para o Grafo G. Creio que seja isso*/
   while (substrato && !strcmp(substrato, "FIM")) {
-    adiciona_vertice (id, substrato, MET, G);
-    vertice novo_vertice = busca_chave_int (id, vertices(G), (int_f_obj) vertice_id);
-    empilha (novo_vertice, L);
+    v = busca_chave_str (substrato, vertices(G), (str_f_obj) vertice_rotulo);
+    empilha (v, L);
     substrato = separa (substrato + strlen (substrato) + 1, ' '); 
-    id++;
   }
   
   return L;
@@ -168,19 +184,48 @@ lista le_substratos(grafo G) {
 // ATENÇÃO: os rótulos "SF" e "RF" são usados no método imprime_reacoes_minimas().
 void adiciona_reacao_falsa(lista substratos, grafo G) {
   
-  //TODO: implementar...
+  int id = 0;
+
+  adiciona_vertice (0, "RF", REA, G);
   
+  while (!vazio(substratos)) {
+    adiciona_aresta (id, 0, vertiec_id(desempilha (substratos)), G);
+    id--;
+  }
+
+  adiciona_vertice (-1, "SF", MET, G);
+  adiciona_aresta (id, -1, 0, G);
 }
+
 
 // Função auxiliar que inicializa os custos e pais dos vértices do grafo G para
 // iniciar busca em largura. O custo de uma reação é a quantidade de enzimas que
 // a cataliza.
 // Devolve uma lista de vértices para ser a Fila inicial do algoritmo de busca.
 lista inicializa_custos(grafo G) {
-  lista F = cria_lista();
   
-  //TODO: implementar...
-  
+  int id;
+  lista F;
+  vertice v;
+
+  id = -1;
+  F = cria_lista();
+
+  v = busca_chave_int (id, vertices(G), (int_f_obj) vertice_id);
+  while (v) {
+    
+    if (vertice_id(v) <= 0) 
+      v->custo = 0;
+    else 
+      v->custo = INT_MAX;
+
+    if (vertice_id <= 0 && vertice_particao == REA)
+      empilha (v, F);
+   
+    id++;
+    v = busca_chave_int (id, vertices(G), (int_f_obj) vertice_id);
+  }
+    
   return F;
 }
 
@@ -192,6 +237,9 @@ lista inicializa_custos(grafo G) {
 // a reação "ótima" que o produz.
 void processa(lista substratos, grafo G) {
   
+  vertice v, aux;
+  lista copy = cria_lista ();
+
   // adiciona uma reação falsa para iniciar a busca
   adiciona_reacao_falsa(substratos, G);
   
@@ -201,8 +249,28 @@ void processa(lista substratos, grafo G) {
   // variante do Algoritmo de Dijkstra para resolver o problema
   while (!vazio(F)) {
     
-    //TODO: implementar
-    
+    v = remove_min (F, custo(v));
+    while (!vazio(fronteira_saida(v))) {
+      aux = desempilha (fronteira_saida(v));
+      empilha (aux, copy);
+
+      if (aux->estado == PROCESSADO) 
+        if (aux->custo > v->custo + qtd_enzima(aux)) {
+          aux->pai = v;
+          aux->custo = v->custo + qtd_enzima(aux);
+        }
+
+        if (aux->estado == ABERTO) {
+          aux->pai = v;
+          aux->custo = v->custo + qtd_enzima(aux);
+          aux->estado = PROCESSADO;
+          empilha (aux, F);
+        }
+      }
+
+    v->estado = FECHADO;
+    free (v->fronteira_saida);
+    v->fronteira_saida = copy; 
   }
 }
 
