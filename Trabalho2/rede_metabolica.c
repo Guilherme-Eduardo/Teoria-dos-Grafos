@@ -49,7 +49,11 @@ int qtd_enzima (vertice v) {
   if (vertice_particao(v) != REACAO)
     return 0;
 
-  return percorreSoma (fronteira_entrada(v), (int_f_obj) ehEnzima);
+  int soma = 0;
+  for (no n = primeiro_no(fronteira_entrada(v)); n; n = proximo(n))
+	soma += ehEnzima(vertice_u(conteudo(n)));
+  
+  return soma;
 }
 
 /*************************************************************/
@@ -258,27 +262,20 @@ void processa(lista substratos, grafo G) {
   
   vertice v, vizinho;
   aresta aux;
-  lista copy = cria_lista ();
 
   // adiciona uma reação falsa para iniciar a busca
   adiciona_reacao_falsa(substratos, G);
   
-  imprime_grafo(G);
-
-  //imprime_grafo(G);
   // inicializa custos, pais e fila inicial da busca F
   lista F = inicializa_custos(G);
   
   // variante do Algoritmo de Dijkstra para resolver o problema
   while (!vazio(F)) {
     v = remove_min (F,  (int_f_obj) custo);
-    printf ("%d\n", vertice_id (v));
-    while (!vazio(fronteira_saida(v))) {
-      printf ("OKkkkkk");
-      aux = desempilha (fronteira_saida(v));
-      empilha (aux, copy);
-      printf ("fs %d - %d\n", vertice_id (v), aresta_id (aux));
-      vizinho = vertice_v (aux);
+    //printf ("OK - %d\n", vertice_id(v));
+    for (no n = primeiro_no(fronteira_saida(v)); n; n = proximo(n)) {
+      vizinho = vertice_v (conteudo(n));
+      //printf ("	OKf - %d\n", vertice_id (vizinho));
 
       if (vizinho->estado == PROCESSADO) 
         if (vizinho->custo > v->custo + qtd_enzima(vizinho)) {
@@ -290,13 +287,10 @@ void processa(lista substratos, grafo G) {
           vizinho->pai = v;
           vizinho->custo = v->custo + qtd_enzima(vizinho);
           vizinho->estado = PROCESSADO;
-          empilha (vizinho, F);
+	  empilha (vizinho, F);
         }
       }
-
     v->estado = FECHADO;
-    free (v->fronteira_saida);
-    v->fronteira_saida = copy; 
   }
   free (F);
 }
@@ -310,7 +304,6 @@ void imprime_reacoes_minimas(grafo G) {
     vertice v = conteudo(n);
     if (vertice_particao(v) == METABOLITO && pai(v)) {
       printf("%s: ", vertice_rotulo(v));
-      printf ("OK\n");
       // cria lista de reações necessárias para sua produção
       lista R = cria_lista();
       empilha(pai(v), R);
