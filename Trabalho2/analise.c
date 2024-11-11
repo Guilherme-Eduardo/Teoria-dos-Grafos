@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
   fclose(f_met);
   
   // imprime rede metabólica
-  //imprime_grafo(G);
+  imprime_grafo(G);
   
   // le substratos iniciais
   lista substratos = le_substratos(G);
@@ -30,8 +30,7 @@ int main(int argc, char **argv) {
   
   // imprime resultados
   imprime_reacoes_minimas(G);
-  //printf ("\n\nOK\n\n");
-
+  
   destroi_grafo (G);
   free (substratos);
   
