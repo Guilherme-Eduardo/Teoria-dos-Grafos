@@ -13,11 +13,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define REA 1
-#define MET 2
-#define ENZ 3
-
-
 /* Funcao responsavel por separar as palavras dependendo de um char separador*/
 char *separa(char *linha, char separador) {
     if (!linha) {
@@ -42,7 +37,7 @@ char *separa(char *linha, char separador) {
 
 int ehEnzima (vertice V) {
 
-  if (vertice_particao (V) == ENZ)
+  if (vertice_particao (V) == ENZIMA)
     return 1;
   
   return 0;  
@@ -51,7 +46,7 @@ int ehEnzima (vertice V) {
 
 int qtd_enzima (vertice v) {
 
-  if (vertice_particao(v) != REA)
+  if (vertice_particao(v) != REACAO)
     return 0;
 
   return percorreSoma (fronteira_entrada(v), (int_f_obj) ehEnzima);
@@ -67,15 +62,14 @@ grafo le_rede_metabolica(FILE *f_met) {
   grafo G = cria_grafo(1);
   
   char linha[1024];
-  char* nomeMolecula;
-  int idVertice = 1;
-  int idAresta = 1;
+  char* nomeMolecula, *buffer;
+  int idVertice = 1, idAresta = 1, idReacaoAtual;
   vertice reacaoAtual, verticeU;
  
   /*Ler até o fim do arquivo*/
-  while (fgets(linha, sizeof(linha), f_met)) {
+  while (fscanf (f_met, "%[^=]", linha) != EOF) {
     /*Leio a linha até o char ' = ' */
-    fscanf (f_met,"%[^=]", linha);    
+    fgetc(f_met);
     nomeMolecula = separa(linha, ' ');
     
     /*Encontrou o fim*/
@@ -83,11 +77,10 @@ grafo le_rede_metabolica(FILE *f_met) {
         break;
 
     /*Adiciona o vertice da reação no Grafo*/
-    printf ("Criando vertice: %s\n", nomeMolecula);      
-    adiciona_vertice (idVertice, nomeMolecula, REA, G);
-
-    /* Obtenho ele para associar os outros vertices da reação*/
-    reacaoAtual = busca_chave_int (idVertice, vertices(G), (int_f_obj) vertice_id);
+    //printf ("Criando vertice: %s\n", nomeMolecula);      
+    adiciona_vertice (idVertice, nomeMolecula, REACAO, G);
+    idReacaoAtual = idVertice;
+    idVertice++;
 
     /*Vou lendo até encontrar outras moleculas*/
     while (nomeMolecula) {
@@ -100,54 +93,71 @@ grafo le_rede_metabolica(FILE *f_met) {
         verticeU = busca_chave_str(nomeMolecula, vertices(G),(str_f_obj) vertice_rotulo);
         
         if (!verticeU) {
-          printf ("Criando vertice: %s\n", nomeMolecula);
-          adiciona_vertice(++idVertice, nomeMolecula, MET, G);
-          adiciona_aresta(idAresta++,idVertice, vertice_id(reacaoAtual), G);
+          //printf ("Criando vertice: %s\n", nomeMolecula);
+          adiciona_vertice(idVertice, nomeMolecula, METABOLITO, G);
+          adiciona_aresta(idAresta,idVertice, idReacaoAtual, G);
+	        idVertice++;
+	        idAresta++;
         }
 
-        else 
-          adiciona_aresta(idAresta++, idVertice, vertice_id (verticeU), G);
+        else {
+          adiciona_aresta(idAresta, vertice_id (verticeU), idReacaoAtual, G);
+	        idAresta++;
+	      }
       }  
+
 
       if (nomeMolecula[0] == '_') {        
         
         verticeU = busca_chave_str(nomeMolecula, vertices(G),(str_f_obj) vertice_rotulo);
         
         if (!verticeU) {
-          printf ("Criando vertice: %s\n", nomeMolecula);
-          adiciona_vertice(++idVertice, nomeMolecula, ENZ, G);
-          adiciona_aresta(idAresta++,idVertice, vertice_id(reacaoAtual), G);
+          //printf ("Criando vertice: %s\n", nomeMolecula);
+          buffer =  separa (nomeMolecula + 1, '_'); 
+          adiciona_vertice(idVertice, buffer, ENZIMA, G);
+          adiciona_aresta(idAresta,idVertice, idReacaoAtual, G);
+	        idVertice++;
+	        idAresta++;
         }
         
-        else 
-          adiciona_aresta(idAresta++, idVertice, vertice_id (verticeU), G);
+        else {
+          adiciona_aresta(idAresta, vertice_id (verticeU), idReacaoAtual, G);
+	        idAresta++;
+	      }
         
       }
-        
+      
       nomeMolecula = separa (nomeMolecula + strlen(nomeMolecula) + 1, ' '); 
     }
 
-    /* Segunda parte: Os produtos da reação == REA ---> MET(Produtos) */
+    /* Segunda parte: Os produtos da reação == REACAO---> MET(Produtos) */
     fscanf (f_met,"%[^.]", linha);
+    fgetc (f_met); // retira o .
+    fgetc(f_met); // retira o \n
     nomeMolecula = separa (linha, ' ');
 
     while (nomeMolecula) {
 
-      /*Conecto os vertices REA ----> MET*/        
+      /*Conecto os vertices REACAO----> MET*/        
       if(nomeMolecula[0] == 'M') {
 
         verticeU = busca_chave_str(nomeMolecula, vertices(G),(str_f_obj) vertice_rotulo);
         
         if (!verticeU) {
-          printf ("Criando vertice: %s\n", nomeMolecula);
-          adiciona_vertice(++idVertice, nomeMolecula, MET, G);
-          adiciona_aresta(idAresta++, vertice_id(reacaoAtual), idVertice, G);
+          //printf ("Criando vertice: %s\n", nomeMolecula);
+          adiciona_vertice(idVertice, nomeMolecula, METABOLITO, G);
+          adiciona_aresta(idAresta, idReacaoAtual, idVertice, G);
+	        idVertice++;
+	        idAresta++;
         }
 
-        else 
-          adiciona_aresta(idAresta++, vertice_id(reacaoAtual), vertice_id (verticeU), G);
+        else {
+          adiciona_aresta(idAresta, idReacaoAtual, vertice_id (verticeU), G);
+	        idAresta++;
+	      }
         
       }
+   
       nomeMolecula = separa (nomeMolecula + strlen(nomeMolecula) + 1, ' '); 
     }
   }
@@ -165,17 +175,17 @@ lista le_substratos(grafo G) {
   vertice v;
   char linha[1024], *substrato;
 
-  scanf ("%s",linha);
+  fgets (linha, sizeof (linha), stdin);
   substrato = separa(linha, ' ');
 
   /*Eu estou criando e adicionando o vertice tanto para a lista
     quanto para o Grafo G. Creio que seja isso*/
-  while (substrato && !strcmp(substrato, "FIM")) {
+  while (substrato && strcmp (substrato, "FIM\n")) {
     v = busca_chave_str (substrato, vertices(G), (str_f_obj) vertice_rotulo);
     empilha (v, L);
     substrato = separa (substrato + strlen (substrato) + 1, ' '); 
   }
-  
+
   return L;
 }
 
@@ -188,15 +198,21 @@ lista le_substratos(grafo G) {
 void adiciona_reacao_falsa(lista substratos, grafo G) {
   
   int id = 0;
+  vertice aux;
 
-  adiciona_vertice (0, "RF", REA, G);
-  
+  if (busca_chave_str ("RF", vertices(G), (str_f_obj) vertice_rotulo))
+    return;
+
+  adiciona_vertice (0, "RF", REACAO, G);
+
   while (!vazio(substratos)) {
-    adiciona_aresta (id, 0, vertice_id(desempilha (substratos)), G);
+    aux = desempilha (substratos);
+    adiciona_aresta (id, 0, vertice_id(aux), G);
     id--;
   }
 
-  adiciona_vertice (-1, "SF", MET, G);
+
+  adiciona_vertice (-1, "SF", METABOLITO, G);
   adiciona_aresta (id, -1, 0, G);
 }
 
@@ -222,7 +238,7 @@ lista inicializa_custos(grafo G) {
     else 
       v->custo = INT_MAX;
 
-    if (vertice_id(v) <= 0 && vertice_particao(v) == REA)
+    if (vertice_id(v) == -1)
       empilha (v, F);
    
     id++;
@@ -240,34 +256,41 @@ lista inicializa_custos(grafo G) {
 // a reação "ótima" que o produz.
 void processa(lista substratos, grafo G) {
   
-  vertice v, aux;
+  vertice v, vizinho;
+  aresta aux;
   lista copy = cria_lista ();
 
   // adiciona uma reação falsa para iniciar a busca
   adiciona_reacao_falsa(substratos, G);
   
+  imprime_grafo(G);
+
+  //imprime_grafo(G);
   // inicializa custos, pais e fila inicial da busca F
   lista F = inicializa_custos(G);
   
   // variante do Algoritmo de Dijkstra para resolver o problema
   while (!vazio(F)) {
-    
     v = remove_min (F,  (int_f_obj) custo);
+    printf ("%d\n", vertice_id (v));
     while (!vazio(fronteira_saida(v))) {
+      printf ("OKkkkkk");
       aux = desempilha (fronteira_saida(v));
       empilha (aux, copy);
+      printf ("fs %d - %d\n", vertice_id (v), aresta_id (aux));
+      vizinho = vertice_v (aux);
 
-      if (aux->estado == PROCESSADO) 
-        if (aux->custo > v->custo + qtd_enzima(aux)) {
-          aux->pai = v;
-          aux->custo = v->custo + qtd_enzima(aux);
+      if (vizinho->estado == PROCESSADO) 
+        if (vizinho->custo > v->custo + qtd_enzima(vizinho)) {
+          vizinho->pai = v;
+          vizinho->custo = v->custo + qtd_enzima(vizinho);
         }
 
-        if (aux->estado == ABERTO) {
-          aux->pai = v;
-          aux->custo = v->custo + qtd_enzima(aux);
-          aux->estado = PROCESSADO;
-          empilha (aux, F);
+        if (vizinho->estado == ABERTO) {
+          vizinho->pai = v;
+          vizinho->custo = v->custo + qtd_enzima(vizinho);
+          vizinho->estado = PROCESSADO;
+          empilha (vizinho, F);
         }
       }
 
@@ -275,18 +298,19 @@ void processa(lista substratos, grafo G) {
     free (v->fronteira_saida);
     v->fronteira_saida = copy; 
   }
+  free (F);
 }
 
 // Imprime resultados com base nos pais dos vértices (na estrutura vértice->pai),
 // calculados pelo método processa().
 void imprime_reacoes_minimas(grafo G) {
-  
+
   // Para cada metabólito, imprime as reações "ótimas"
   for (no n = primeiro_no(vertices(G)); n; n = proximo(n)) {
     vertice v = conteudo(n);
     if (vertice_particao(v) == METABOLITO && pai(v)) {
       printf("%s: ", vertice_rotulo(v));
-      
+      printf ("OK\n");
       // cria lista de reações necessárias para sua produção
       lista R = cria_lista();
       empilha(pai(v), R);

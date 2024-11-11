@@ -245,7 +245,7 @@ void imprime_vertice(vertice v) {
   imprime_lista(fronteira_entrada(v), (void_f_obj) imprime_aresta);
   printf("}, grau_saida:%d, fronteira_saida:{ ", grau_saida(v));
   imprime_lista(fronteira_saida(v), (void_f_obj) imprime_aresta);
-  printf("})");
+  printf("})\n");
 }
 
 // imprime a aresta e
