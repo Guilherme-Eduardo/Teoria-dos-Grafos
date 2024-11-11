@@ -1,0 +1,66 @@
+Criando vertice: R2
+Criando vertice: M3
+Criando vertice: _E1
+Criando vertice: M5
+Criando vertice: M6
+Criando vertice: R3
+Criando vertice: M7
+Criando vertice: M8
+Criando vertice: R4
+Criando vertice: M11
+Criando vertice: R5
+Criando vertice: M4
+Criando vertice: _E2
+Criando vertice: M9
+Criando vertice: R6
+Criando vertice: M2
+Criando vertice: _E3
+Criando vertice: _E4
+Criando vertice: M10
+Criando vertice: R7
+Criando vertice: _E5
+Criando vertice: _E6
+Criando vertice: _E7
+Criando vertice: R8
+Criando vertice: R9
+Criando vertice: _E8
+Criando vertice: R10
+Criando vertice: _E9
+Criando vertice: _E10
+Criando vertice: _E11
+1
+
+Vertices: (id:22, rotulo:_E11, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:37 {22,19}) })
+ (id:21, rotulo:_E10, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:36 {21,19}) })
+ (id:20, rotulo:_E9, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:35 {20,19}) })
+ (id:19, rotulo:R10, grau_entrada:3, fronteira_entrada:{ (id:37 {22,19}) (id:36 {21,19}) (id:35 {20,19}) }, grau_saida:3, fronteira_saida:{ (id:38 {19,8}) (id:34 {19,5}) (id:33 {19,4}) })
+ (id:19, rotulo:_E8, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:31 {19,18}) })
+ (id:18, rotulo:R9, grau_entrada:1, fronteira_entrada:{ (id:31 {19,18}) }, grau_saida:3, fronteira_saida:{ (id:32 {18,15}) (id:30 {18,5}) (id:29 {18,4}) })
+ (id:18, rotulo:R8, grau_entrada:0, fronteira_entrada:{ }, grau_saida:2, fronteira_saida:{ (id:28 {18,11}) (id:27 {18,4}) })
+ (id:18, rotulo:_E7, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:25 {18,15}) })
+ (id:17, rotulo:_E6, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:24 {17,15}) })
+ (id:16, rotulo:_E5, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:23 {16,15}) })
+ (id:15, rotulo:R7, grau_entrada:5, fronteira_entrada:{ (id:32 {18,15}) (id:25 {18,15}) (id:24 {17,15}) (id:23 {16,15}) (id:22 {15,15}) }, grau_saida:3, fronteira_saida:{ (id:26 {15,8}) (id:22 {15,15}) (id:21 {15,11}) })
+ (id:15, rotulo:M10, grau_entrada:1, fronteira_entrada:{ (id:20 {11,15}) }, grau_saida:0, fronteira_saida:{ })
+ (id:14, rotulo:_E4, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:19 {14,11}) })
+ (id:13, rotulo:_E3, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:18 {13,11}) })
+ (id:12, rotulo:M2, grau_entrada:0, fronteira_entrada:{ }, grau_saida:2, fronteira_saida:{ (id:17 {12,9}) (id:16 {12,11}) })
+ (id:11, rotulo:R6, grau_entrada:5, fronteira_entrada:{ (id:28 {18,11}) (id:21 {15,11}) (id:19 {14,11}) (id:18 {13,11}) (id:16 {12,11}) }, grau_saida:1, fronteira_saida:{ (id:20 {11,15}) })
+ (id:11, rotulo:M9, grau_entrada:1, fronteira_entrada:{ (id:15 {8,11}) }, grau_saida:0, fronteira_saida:{ })
+ (id:10, rotulo:_E2, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:14 {10,8}) })
+ (id:9, rotulo:M4, grau_entrada:1, fronteira_entrada:{ (id:17 {12,9}) }, grau_saida:1, fronteira_saida:{ (id:13 {9,8}) })
+ (id:8, rotulo:R5, grau_entrada:4, fronteira_entrada:{ (id:38 {19,8}) (id:26 {15,8}) (id:14 {10,8}) (id:13 {9,8}) }, grau_saida:1, fronteira_saida:{ (id:15 {8,11}) })
+ (id:8, rotulo:M11, grau_entrada:1, fronteira_entrada:{ (id:12 {7,8}) }, grau_saida:0, fronteira_saida:{ })
+ (id:7, rotulo:R4, grau_entrada:1, fronteira_entrada:{ (id:11 {7,7}) }, grau_saida:4, fronteira_saida:{ (id:12 {7,8}) (id:11 {7,7}) (id:10 {7,6}) (id:9 {7,2}) })
+ (id:7, rotulo:M8, grau_entrada:1, fronteira_entrada:{ (id:8 {5,7}) }, grau_saida:0, fronteira_saida:{ })
+ (id:6, rotulo:M7, grau_entrada:2, fronteira_entrada:{ (id:10 {7,6}) (id:7 {5,6}) }, grau_saida:0, fronteira_saida:{ })
+ (id:5, rotulo:R3, grau_entrada:3, fronteira_entrada:{ (id:34 {19,5}) (id:30 {18,5}) (id:6 {5,5}) }, grau_saida:4, fronteira_saida:{ (id:8 {5,7}) (id:7 {5,6}) (id:6 {5,5}) (id:5 {5,2}) })
+ (id:5, rotulo:M6, grau_entrada:1, fronteira_entrada:{ (id:4 {1,5}) }, grau_saida:0, fronteira_saida:{ })
+ (id:4, rotulo:M5, grau_entrada:4, fronteira_entrada:{ (id:33 {19,4}) (id:29 {18,4}) (id:27 {18,4}) (id:3 {1,4}) }, grau_saida:0, fronteira_saida:{ })
+ (id:3, rotulo:_E1, grau_entrada:0, fronteira_entrada:{ }, grau_saida:1, fronteira_saida:{ (id:2 {3,1}) })
+ (id:2, rotulo:M3, grau_entrada:2, fronteira_entrada:{ (id:9 {7,2}) (id:5 {5,2}) }, grau_saida:1, fronteira_saida:{ (id:1 {2,1}) })
+ (id:1, rotulo:R2, grau_entrada:2, fronteira_entrada:{ (id:2 {3,1}) (id:1 {2,1}) }, grau_saida:2, fronteira_saida:{ (id:4 {1,5}) (id:3 {1,4}) })
+ 
+Arestas: (id:38 {19,8}) (id:37 {22,19}) (id:36 {21,19}) (id:35 {20,19}) (id:34 {19,5}) (id:33 {19,4}) (id:32 {18,15}) (id:31 {19,18}) (id:30 {18,5}) (id:29 {18,4}) (id:28 {18,11}) (id:27 {18,4}) (id:26 {15,8}) (id:25 {18,15}) (id:24 {17,15}) (id:23 {16,15}) (id:22 {15,15}) (id:21 {15,11}) (id:20 {11,15}) (id:19 {14,11}) (id:18 {13,11}) (id:17 {12,9}) (id:16 {12,11}) (id:15 {8,11}) (id:14 {10,8}) (id:13 {9,8}) (id:12 {7,8}) (id:11 {7,7}) (id:10 {7,6}) (id:9 {7,2}) (id:8 {5,7}) (id:7 {5,6}) (id:6 {5,5}) (id:5 {5,2}) (id:4 {1,5}) (id:3 {1,4}) (id:2 {3,1}) (id:1 {2,1}) 
+
+Estrutura:
