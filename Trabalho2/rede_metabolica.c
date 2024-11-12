@@ -218,6 +218,7 @@ void adiciona_reacao_falsa(lista substratos, grafo G) {
 
   adiciona_vertice (-1, "SF", METABOLITO, G);
   adiciona_aresta (id, -1, 0, G);
+  free (substratos);
 }
 
 
@@ -272,10 +273,9 @@ void processa(lista substratos, grafo G) {
   // variante do Algoritmo de Dijkstra para resolver o problema
   while (!vazio(F)) {
     v = remove_min (F,  (int_f_obj) custo);
-    //printf ("OK - %d\n", vertice_id(v));
+    
     for (no n = primeiro_no(fronteira_saida(v)); n; n = proximo(n)) {
       vizinho = vertice_v (conteudo(n));
-      //printf ("	OKf - %d\n", vertice_id (vizinho));
 
       if (vizinho->estado == PROCESSADO) 
         if (vizinho->custo > v->custo + qtd_enzima(vizinho)) {
