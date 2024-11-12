@@ -32,7 +32,6 @@ int main(int argc, char **argv) {
   imprime_reacoes_minimas(G);
   
   destroi_grafo (G);
-  free (substratos);
   
   return 0;
 }

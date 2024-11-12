@@ -92,11 +92,6 @@ void destroi_grafo(grafo G) {
     remove_vertice(vertice_id(topo(vertices(G))), G);      
   }
 
-  /*Remove todas as arestas*/
-  // while (!vazio(arestas(G))) {    
-  //   remove_aresta(aresta_id(topo(arestas(G))), G);
-  // }
-
   free (vertices(G));
   free (arestas (G));
   free (G);
