@@ -159,7 +159,6 @@ void adiciona_aresta(int id, int u_id, int v_id, grafo G) {
     fprintf (stderr, "Erro ao acessar o grafo G.\n");
     return;
   }
-
   aresta nova_aresta = (aresta) malloc (sizeof (t_aresta));
   if (!nova_aresta) {
     fprintf (stderr, "Erro ao alocar aresta.\n");

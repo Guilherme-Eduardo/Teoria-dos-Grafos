@@ -1,4 +1,4 @@
-Alunos: Heloísa Dias Viotto e Guilherme Eduardo Gonçalves da Silva
+Alunos: Heloísa Dias Viotto (GRR20231942) e Guilherme Eduardo Gonçalves da Silva (GRR20231950)
 
 FUNÇÕES AUXILIARES:
 
