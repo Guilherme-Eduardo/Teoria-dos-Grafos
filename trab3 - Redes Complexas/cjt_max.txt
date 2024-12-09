@@ -1,0 +1,257 @@
+
+=============================== Tipos de grafos ==========================================
+
+O grafo analisado NAO é direcionado
+
+================================ Análise das centralidades  ================================
+
+Nó com maior centralidade de grau: 10 (valor: 0.16145833333333331)
+Nó com maior centralidade de proximidade: 82 (valor: 0.35687732342007433)
+Nó com maior centralidade de intermediação: 5 (valor: 0.44073848620232864)
+
+=============================== Raio, diametro, periferia e  centro =============================
+
+Grafo é conectado!
+O raio do grafo é: 4
+O diâmetro do grafo é: 8
+A periferia do grafo é: [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 150, 151, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146]
+O centro do grafo é: [82, 102, 36]
+
+================================= Ciclo ===============================================
+
+O maior ciclo simples possui 3 e é composto por: [1, 4, 12]
+O maior ciclo basis possui 3 e é composto por: [1, 4, 12]
+
+================================= componente conexa =================================
+
+Tamanho da maior componente conexa: 193
+Formada por: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194]
+
+================================= Distribuiçao dos graus ===============================
+
+Nó com maior grau: 10, Grau: 31
+
+================================ Arvore geradora e clusters =====================================
+
+Vertice: 4, Coeficiente de Clusterização: 1.0
+Vertice: 18, Coeficiente de Clusterização: 1.0
+Vertice: 184, Coeficiente de Clusterização: 1.0
+Vertice: 185, Coeficiente de Clusterização: 1.0
+Vertice: 1, Coeficiente de Clusterização: 0.07142857142857142
+Vertice: 7, Coeficiente de Clusterização: 0.02197802197802198
+Vertice: 12, Coeficiente de Clusterização: 0.009523809523809525
+Vertice: 2, Coeficiente de Clusterização: 0.004597701149425287
+Vertice: 14, Coeficiente de Clusterização: 0
+Vertice: 15, Coeficiente de Clusterização: 0
+Vertice: 16, Coeficiente de Clusterização: 0
+Vertice: 17, Coeficiente de Clusterização: 0
+Vertice: 82, Coeficiente de Clusterização: 0
+Vertice: 152, Coeficiente de Clusterização: 0
+Vertice: 153, Coeficiente de Clusterização: 0
+Vertice: 154, Coeficiente de Clusterização: 0
+Vertice: 155, Coeficiente de Clusterização: 0
+Vertice: 156, Coeficiente de Clusterização: 0
+Vertice: 157, Coeficiente de Clusterização: 0
+Vertice: 158, Coeficiente de Clusterização: 0
+Vertice: 159, Coeficiente de Clusterização: 0
+Vertice: 160, Coeficiente de Clusterização: 0
+Vertice: 161, Coeficiente de Clusterização: 0
+Vertice: 162, Coeficiente de Clusterização: 0
+Vertice: 163, Coeficiente de Clusterização: 0
+Vertice: 164, Coeficiente de Clusterização: 0
+Vertice: 165, Coeficiente de Clusterização: 0
+Vertice: 166, Coeficiente de Clusterização: 0
+Vertice: 167, Coeficiente de Clusterização: 0
+Vertice: 168, Coeficiente de Clusterização: 0
+Vertice: 169, Coeficiente de Clusterização: 0
+Vertice: 170, Coeficiente de Clusterização: 0
+Vertice: 171, Coeficiente de Clusterização: 0
+Vertice: 172, Coeficiente de Clusterização: 0
+Vertice: 173, Coeficiente de Clusterização: 0
+Vertice: 174, Coeficiente de Clusterização: 0
+Vertice: 175, Coeficiente de Clusterização: 0
+Vertice: 176, Coeficiente de Clusterização: 0
+Vertice: 177, Coeficiente de Clusterização: 0
+Vertice: 3, Coeficiente de Clusterização: 0
+Vertice: 102, Coeficiente de Clusterização: 0
+Vertice: 178, Coeficiente de Clusterização: 0
+Vertice: 179, Coeficiente de Clusterização: 0
+Vertice: 180, Coeficiente de Clusterização: 0
+Vertice: 181, Coeficiente de Clusterização: 0
+Vertice: 182, Coeficiente de Clusterização: 0
+Vertice: 183, Coeficiente de Clusterização: 0
+Vertice: 5, Coeficiente de Clusterização: 0
+Vertice: 36, Coeficiente de Clusterização: 0
+Vertice: 37, Coeficiente de Clusterização: 0
+Vertice: 38, Coeficiente de Clusterização: 0
+Vertice: 39, Coeficiente de Clusterização: 0
+Vertice: 40, Coeficiente de Clusterização: 0
+Vertice: 41, Coeficiente de Clusterização: 0
+Vertice: 42, Coeficiente de Clusterização: 0
+Vertice: 43, Coeficiente de Clusterização: 0
+Vertice: 44, Coeficiente de Clusterização: 0
+Vertice: 45, Coeficiente de Clusterização: 0
+Vertice: 46, Coeficiente de Clusterização: 0
+Vertice: 47, Coeficiente de Clusterização: 0
+Vertice: 48, Coeficiente de Clusterização: 0
+Vertice: 49, Coeficiente de Clusterização: 0
+Vertice: 50, Coeficiente de Clusterização: 0
+Vertice: 51, Coeficiente de Clusterização: 0
+Vertice: 52, Coeficiente de Clusterização: 0
+Vertice: 53, Coeficiente de Clusterização: 0
+Vertice: 54, Coeficiente de Clusterização: 0
+Vertice: 55, Coeficiente de Clusterização: 0
+Vertice: 56, Coeficiente de Clusterização: 0
+Vertice: 57, Coeficiente de Clusterização: 0
+Vertice: 58, Coeficiente de Clusterização: 0
+Vertice: 59, Coeficiente de Clusterização: 0
+Vertice: 60, Coeficiente de Clusterização: 0
+Vertice: 6, Coeficiente de Clusterização: 0
+Vertice: 61, Coeficiente de Clusterização: 0
+Vertice: 62, Coeficiente de Clusterização: 0
+Vertice: 63, Coeficiente de Clusterização: 0
+Vertice: 64, Coeficiente de Clusterização: 0
+Vertice: 65, Coeficiente de Clusterização: 0
+Vertice: 66, Coeficiente de Clusterização: 0
+Vertice: 67, Coeficiente de Clusterização: 0
+Vertice: 68, Coeficiente de Clusterização: 0
+Vertice: 69, Coeficiente de Clusterização: 0
+Vertice: 70, Coeficiente de Clusterização: 0
+Vertice: 71, Coeficiente de Clusterização: 0
+Vertice: 72, Coeficiente de Clusterização: 0
+Vertice: 73, Coeficiente de Clusterização: 0
+Vertice: 74, Coeficiente de Clusterização: 0
+Vertice: 75, Coeficiente de Clusterização: 0
+Vertice: 76, Coeficiente de Clusterização: 0
+Vertice: 77, Coeficiente de Clusterização: 0
+Vertice: 78, Coeficiente de Clusterização: 0
+Vertice: 79, Coeficiente de Clusterização: 0
+Vertice: 80, Coeficiente de Clusterização: 0
+Vertice: 81, Coeficiente de Clusterização: 0
+Vertice: 149, Coeficiente de Clusterização: 0
+Vertice: 186, Coeficiente de Clusterização: 0
+Vertice: 187, Coeficiente de Clusterização: 0
+Vertice: 188, Coeficiente de Clusterização: 0
+Vertice: 189, Coeficiente de Clusterização: 0
+Vertice: 190, Coeficiente de Clusterização: 0
+Vertice: 191, Coeficiente de Clusterização: 0
+Vertice: 192, Coeficiente de Clusterização: 0
+Vertice: 193, Coeficiente de Clusterização: 0
+Vertice: 194, Coeficiente de Clusterização: 0
+Vertice: 8, Coeficiente de Clusterização: 0
+Vertice: 150, Coeficiente de Clusterização: 0
+Vertice: 151, Coeficiente de Clusterização: 0
+Vertice: 9, Coeficiente de Clusterização: 0
+Vertice: 35, Coeficiente de Clusterização: 0
+Vertice: 83, Coeficiente de Clusterização: 0
+Vertice: 84, Coeficiente de Clusterização: 0
+Vertice: 85, Coeficiente de Clusterização: 0
+Vertice: 86, Coeficiente de Clusterização: 0
+Vertice: 87, Coeficiente de Clusterização: 0
+Vertice: 88, Coeficiente de Clusterização: 0
+Vertice: 89, Coeficiente de Clusterização: 0
+Vertice: 90, Coeficiente de Clusterização: 0
+Vertice: 91, Coeficiente de Clusterização: 0
+Vertice: 92, Coeficiente de Clusterização: 0
+Vertice: 93, Coeficiente de Clusterização: 0
+Vertice: 94, Coeficiente de Clusterização: 0
+Vertice: 95, Coeficiente de Clusterização: 0
+Vertice: 96, Coeficiente de Clusterização: 0
+Vertice: 97, Coeficiente de Clusterização: 0
+Vertice: 98, Coeficiente de Clusterização: 0
+Vertice: 99, Coeficiente de Clusterização: 0
+Vertice: 100, Coeficiente de Clusterização: 0
+Vertice: 101, Coeficiente de Clusterização: 0
+Vertice: 103, Coeficiente de Clusterização: 0
+Vertice: 104, Coeficiente de Clusterização: 0
+Vertice: 105, Coeficiente de Clusterização: 0
+Vertice: 147, Coeficiente de Clusterização: 0
+Vertice: 148, Coeficiente de Clusterização: 0
+Vertice: 10, Coeficiente de Clusterização: 0
+Vertice: 106, Coeficiente de Clusterização: 0
+Vertice: 107, Coeficiente de Clusterização: 0
+Vertice: 108, Coeficiente de Clusterização: 0
+Vertice: 109, Coeficiente de Clusterização: 0
+Vertice: 110, Coeficiente de Clusterização: 0
+Vertice: 111, Coeficiente de Clusterização: 0
+Vertice: 112, Coeficiente de Clusterização: 0
+Vertice: 113, Coeficiente de Clusterização: 0
+Vertice: 114, Coeficiente de Clusterização: 0
+Vertice: 115, Coeficiente de Clusterização: 0
+Vertice: 116, Coeficiente de Clusterização: 0
+Vertice: 117, Coeficiente de Clusterização: 0
+Vertice: 118, Coeficiente de Clusterização: 0
+Vertice: 119, Coeficiente de Clusterização: 0
+Vertice: 120, Coeficiente de Clusterização: 0
+Vertice: 121, Coeficiente de Clusterização: 0
+Vertice: 122, Coeficiente de Clusterização: 0
+Vertice: 123, Coeficiente de Clusterização: 0
+Vertice: 124, Coeficiente de Clusterização: 0
+Vertice: 125, Coeficiente de Clusterização: 0
+Vertice: 126, Coeficiente de Clusterização: 0
+Vertice: 127, Coeficiente de Clusterização: 0
+Vertice: 128, Coeficiente de Clusterização: 0
+Vertice: 129, Coeficiente de Clusterização: 0
+Vertice: 130, Coeficiente de Clusterização: 0
+Vertice: 131, Coeficiente de Clusterização: 0
+Vertice: 11, Coeficiente de Clusterização: 0
+Vertice: 132, Coeficiente de Clusterização: 0
+Vertice: 133, Coeficiente de Clusterização: 0
+Vertice: 134, Coeficiente de Clusterização: 0
+Vertice: 135, Coeficiente de Clusterização: 0
+Vertice: 136, Coeficiente de Clusterização: 0
+Vertice: 137, Coeficiente de Clusterização: 0
+Vertice: 138, Coeficiente de Clusterização: 0
+Vertice: 139, Coeficiente de Clusterização: 0
+Vertice: 140, Coeficiente de Clusterização: 0
+Vertice: 141, Coeficiente de Clusterização: 0
+Vertice: 142, Coeficiente de Clusterização: 0
+Vertice: 143, Coeficiente de Clusterização: 0
+Vertice: 144, Coeficiente de Clusterização: 0
+Vertice: 145, Coeficiente de Clusterização: 0
+Vertice: 146, Coeficiente de Clusterização: 0
+Vertice: 19, Coeficiente de Clusterização: 0
+Vertice: 20, Coeficiente de Clusterização: 0
+Vertice: 21, Coeficiente de Clusterização: 0
+Vertice: 22, Coeficiente de Clusterização: 0
+Vertice: 23, Coeficiente de Clusterização: 0
+Vertice: 24, Coeficiente de Clusterização: 0
+Vertice: 25, Coeficiente de Clusterização: 0
+Vertice: 26, Coeficiente de Clusterização: 0
+Vertice: 27, Coeficiente de Clusterização: 0
+Vertice: 28, Coeficiente de Clusterização: 0
+Vertice: 29, Coeficiente de Clusterização: 0
+Vertice: 30, Coeficiente de Clusterização: 0
+Vertice: 31, Coeficiente de Clusterização: 0
+Vertice: 32, Coeficiente de Clusterização: 0
+Vertice: 33, Coeficiente de Clusterização: 0
+Vertice: 34, Coeficiente de Clusterização: 0
+Coeficiente de clusterização médio: 0.021282529036683043
+Matriz: [[0. 1. 1. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]
+Labels do K-means: [0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0]
+
+================================== Cliques ============================================
+
+Cliques maximos: [[1, 12, 18], [1, 12, 4], [2, 7, 184], [2, 7, 185], [1, 5], [1, 14], [1, 15], [1, 16], [1, 17], [2, 152], [2, 153], [2, 154], [2, 155], [2, 156], [2, 157], [2, 158], [2, 159], [2, 160], [2, 161], [2, 162], [2, 163], [2, 164], [2, 165], [2, 166], [2, 167], [2, 168], [2, 169], [2, 170], [2, 171], [2, 172], [2, 173], [2, 174], [2, 175], [2, 176], [2, 177], [2, 82], [3, 102], [3, 7], [3, 176], [3, 177], [3, 178], [3, 179], [3, 180], [3, 181], [3, 182], [3, 183], [5, 36], [5, 37], [5, 38], [5, 39], [5, 40], [5, 41], [5, 42], [5, 43], [5, 44], [5, 45], [5, 46], [5, 47], [5, 48], [5, 49], [5, 50], [5, 51], [5, 52], [5, 53], [5, 54], [5, 55], [5, 56], [5, 57], [5, 58], [5, 59], [5, 60], [5, 82], [5, 102], [6, 64], [6, 65], [6, 66], [6, 67], [6, 68], [6, 69], [6, 70], [6, 71], [6, 72], [6, 73], [6, 74], [6, 75], [6, 76], [6, 77], [6, 78], [6, 79], [6, 80], [6, 81], [6, 59], [6, 60], [6, 61], [6, 62], [6, 63], [7, 192], [7, 193], [7, 194], [7, 149], [7, 186], [7, 187], [7, 188], [7, 189], [7, 190], [7, 191], [8, 149], [8, 150], [8, 151], [9, 82], [9, 147], [9, 148], [9, 149], [9, 83], [9, 84], [9, 152], [9, 85], [9, 86], [9, 87], [9, 88], [9, 89], [9, 90], [9, 91], [9, 92], [9, 93], [9, 94], [9, 35], [9, 95], [9, 96], [9, 97], [9, 98], [9, 99], [9, 100], [9, 101], [9, 102], [9, 103], [9, 104], [9, 105], [10, 128], [10, 129], [10, 130], [10, 131], [10, 149], [10, 36], [10, 103], [10, 104], [10, 105], [10, 106], [10, 107], [10, 108], [10, 109], [10, 110], [10, 111], [10, 112], [10, 113], [10, 114], [10, 115], [10, 116], [10, 117], [10, 118], [10, 119], [10, 120], [10, 121], [10, 122], [10, 123], [10, 124], [10, 125], [10, 126], [10, 127], [11, 129], [11, 130], [11, 131], [11, 132], [11, 133], [11, 134], [11, 135], [11, 136], [11, 137], [11, 138], [11, 139], [11, 140], [11, 141], [11, 142], [11, 143], [11, 144], [11, 145], [11, 146], [11, 147], [11, 148], [11, 35], [12, 32], [12, 33], [12, 34], [12, 35], [12, 82], [12, 19], [12, 20], [12, 21], [12, 22], [12, 23], [12, 24], [12, 25], [12, 26], [12, 27], [12, 28], [12, 29], [12, 30], [12, 31]]
+Maior clique: [1, 12, 18]
+
+================================= Conjunto independente =================================
+
+Tamanho do conjunto maximal: 182
+Conjunto maximal ordenado (decrescente): [194, 193, 192, 191, 190, 189, 188, 187, 186, 185, 184, 183, 182, 181, 180, 179, 178, 177, 176, 175, 174, 173, 172, 171, 170, 169, 168, 167, 166, 165, 164, 163, 162, 161, 160, 159, 158, 157, 156, 155, 154, 153, 152, 151, 150, 149, 148, 147, 146, 145, 144, 143, 142, 141, 140, 139, 138, 137, 136, 135, 134, 133, 132, 131, 130, 129, 128, 127, 126, 125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113, 112, 111, 110, 109, 108, 107, 106, 105, 104, 103, 102, 101, 100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 4]
+
+Tamanho do conjunto aproximado: 180
+Conjunto aproximado ordenado (decrescente): [194, 193, 192, 191, 190, 189, 188, 187, 186, 185, 183, 182, 181, 180, 179, 178, 177, 176, 175, 174, 173, 172, 171, 170, 169, 168, 167, 166, 165, 164, 163, 162, 161, 160, 159, 158, 157, 156, 155, 154, 153, 152, 151, 150, 149, 148, 147, 146, 145, 144, 143, 142, 141, 140, 139, 138, 137, 136, 135, 134, 133, 132, 131, 130, 129, 128, 127, 126, 125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113, 112, 111, 110, 109, 108, 107, 106, 105, 104, 103, 102, 101, 100, 99, 98, 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14]
+Número de nós: 193
+Número de arestas: 214

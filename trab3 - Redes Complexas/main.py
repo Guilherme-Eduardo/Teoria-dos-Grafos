@@ -13,7 +13,7 @@ df = pd.read_csv("bn-mouse_visual-cortex_2.edges", sep='\s+', header=None, names
 G = nx.from_pandas_edgelist(df, "node_1", "node_2", create_using=nx.Graph())
 
 
-# =============================== Tipos de grafos ==========================================
+print("\n=============================== Tipos de grafos ==========================================\n")
 
 #Se é direcionado
 if (nx.is_directed(G)):
@@ -23,7 +23,7 @@ else:
 
 
 
-#================================ Análise das centralidades  ================================
+print("\n================================ Análise das centralidades  ================================\n")
 
 
 # Esse é o passo a passo para cada tipo de centralidade:
@@ -58,7 +58,7 @@ most_central_bet = list(betCent_sorted.keys())[0]
 print(f"Nó com maior centralidade de intermediação: {most_central_bet} (valor: {betCent_sorted[most_central_bet]})")
 
 
-# =============================== Raio, diametro, periferia e  centro =============================
+print("\n=============================== Raio, diametro, periferia e  centro =============================\n")
 
 
 if nx.is_connected(G):
@@ -79,7 +79,7 @@ else:
 
 
 
-# ================================= Ciclo ===============================================
+print("\n================================= Ciclo ===============================================\n")
 
 # Retorna uma lista de nós
 
@@ -92,7 +92,7 @@ max_cicle = cicle[0]
 print (f"O maior ciclo basis possui {len(max_cicle)} e é composto por: {max_cicle}")
 
 
-# ================================= componente conexa =================================
+print("\n================================= componente conexa =================================\n")
 
 # Obtendo as componentes conexas
 connected_components = nx.connected_components(G)
@@ -108,7 +108,7 @@ else:
     print("O grafo não possui componentes conexas.")
 
 
-# ================================= Distribuiçao dos graus ===============================
+print("\n================================= Distribuiçao dos graus ===============================\n")
 
 
 # O site abaixo disponibiliza um algoritmo para ver como está a distribuicao dos graus.
@@ -144,7 +144,7 @@ ax1.set_xlabel("Classificação")
 plt.tight_layout()
 
 
-# ================================ Arvore geradora e clusters =====================================
+print("\n================================ Arvore geradora e clusters =====================================\n")
 
 # Arvore gerado minimas ? nao entendi a relação disso com redes complexas....
 
@@ -191,7 +191,7 @@ print (f"Matriz: {adj_matrix}")
 kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(adj_matrix)
 print(f"Labels do K-means: {kmeans.labels_}")
 
-# ================================== Cliques ============================================
+print("\n================================== Cliques ============================================\n")
 
 # Encontrar cliques maximais
 cliques = list(nx.find_cliques(G))
@@ -203,7 +203,7 @@ largest_clique = max(cliques, key=len)
 print("Maior clique:", largest_clique)
 
 
-# ================================= Conjunto independente =================================
+print("\n================================= Conjunto independente =================================\n")
 
 # Existem 2 códigos que tratam o CI: 
 
@@ -216,7 +216,7 @@ aproxCI_sorted = sorted(aproxCI, reverse=True)
 
 print(f"Tamanho do conjunto maximal: {len(maximal_sorted)}")
 print(f"Conjunto maximal ordenado (decrescente): {maximal_sorted}")
-
+print()
 print(f"Tamanho do conjunto aproximado: {len(aproxCI_sorted)}")
 print(f"Conjunto aproximado ordenado (decrescente): {aproxCI_sorted}")
 
