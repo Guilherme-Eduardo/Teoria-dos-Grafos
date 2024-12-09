@@ -1,3 +1,7 @@
+# Nó com maior centralidade de grau: 10 (valor: 0.16145833333333331)
+# Nó com maior centralidade de proximidade: 82 (valor: 0.35687732342007433)
+# Nó com maior centralidade de intermediação: 5 (valor: 0.44073848620232864)
+
 # ================================ Imports =========================================
 
 import pandas as pd
@@ -12,10 +16,16 @@ df = pd.read_csv("bn-mouse_visual-cortex_2.edges", sep='\s+', header=None, names
 # Passo 2: Criar o grafo usando o DataFrame. "node_1" e "node_2" são os vertices.
 G = nx.from_pandas_edgelist(df, "node_1", "node_2", create_using=nx.Graph())
 
+centralidade_grau = 10
+centralidade_proximidade = 82
+intermediacao = 5
 
-centrais = [82, 102, 36]
 node_colors = [
-    "red" if node in centrais else "blue" for node in G.nodes()
+    "red" if node == centralidade_grau else
+    "green" if node == centralidade_proximidade else
+    "purple" if node == intermediacao else
+    "blue"  # Cor padrão para outros nós
+    for node in G.nodes()
 ]
 
 
@@ -30,6 +40,6 @@ nx.draw(
     font_color="white",
     font_size=10,
 )
-plt.title("Vértices centrais em vermelho")
-plt.savefig("vertices_centrais.png", dpi=300, bbox_inches="tight")
+plt.title("Vértices centrais destacados")
+plt.savefig("vertices_destacados.png", dpi=300, bbox_inches="tight")
 plt.show()
