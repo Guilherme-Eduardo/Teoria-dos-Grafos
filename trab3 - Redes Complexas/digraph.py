@@ -132,10 +132,10 @@ ax1 = fig.add_subplot(axgrid[3:, :2])
 ax1.plot(degree_sequence, "b-", marker="o")
 ax1.set_title("Distribuição dos Graus")
 ax1.set_ylabel("Grau")
-ax1.set_xlabel("Classificação")
+ax1.set_xlabel("N° de Vértices")
 
 # Exibindo o gráfico
-plt.tight_layout()
+plt.savefig()
 
 
 # ================================ Arvore geradora e clusters =====================================

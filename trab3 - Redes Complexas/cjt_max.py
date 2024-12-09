@@ -29,6 +29,6 @@ nx.draw(
     font_color="white",
     font_size=10,
 )
-plt.title("Conjunto Independente em Vermelho")
+#plt.title("Conjunto Independente em Vermelho")
 plt.savefig("Conjunto_Independente.png", dpi=300, bbox_inches="tight")
 plt.show()
