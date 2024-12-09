@@ -174,17 +174,22 @@ plt.tight_layout()
 
 cluster = nx.clustering (G)
 avg_clustering = nx.average_clustering(G)
+cluster_sorted = sorted(cluster.items(), key=lambda item: item[1], reverse=True)
 
-print (f"Imprimindo clustering: {cluster}")
+# Exibir os nós e seus valores de clusterização em ordem decrescente
+for node, clust_value in cluster_sorted:
+    print(f"Vertice: {node}, Coeficiente de Clusterização: {clust_value}")
+
 print("Coeficiente de clusterização médio:", avg_clustering)
 
 
-# # Kmeans
+# Kmeans
 
-# # K-means com matriz de adjacência
-# adj_matrix = nx.to_numpy_array(G)
-# kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(adj_matrix)
-# print(f"Labels do K-means: {kmeans.labels_}")
+# K-means com matriz de adjacência
+adj_matrix = nx.to_numpy_array(G)
+print (f"Matriz: {adj_matrix}")
+kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(adj_matrix)
+print(f"Labels do K-means: {kmeans.labels_}")
 
 # ================================== Cliques ============================================
 
