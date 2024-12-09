@@ -8,8 +8,18 @@ import matplotlib.pyplot as plt
 df = pd.read_csv("bn-mouse_visual-cortex_2.edges", sep='\s+', header=None, names=["node_1", "node_2"])
 
 
-# Passo 2: Criar o grafo usando o DataFrame. "node_1" e "node_2" são os nós.
+# Passo 2: Criar o grafo usando o DataFrame. "node_1" e "node_2" são os vertices.
 G = nx.from_pandas_edgelist(df, "node_1", "node_2", create_using=nx.Graph())
+
+
+# =============================== Tipos de grafos ==========================================
+
+#Se é direcionado
+if (nx.is_directed(G)):
+    print ("O grafo analisado é direcionado")
+else: 
+    print ("O grafo analisado NAO é direcionado")
+
 
 
 #================================ Análise das centralidades  ================================
@@ -51,7 +61,7 @@ print(f"Nó com maior centralidade de intermediação: {most_central_bet} (valor
 
 
 if nx.is_connected(G):
-    print ("Grafo é conextado!")
+    print ("Grafo é conectado!")
     radius = nx.radius(G)
     print(f"O raio do grafo é: {radius}")
     
@@ -68,7 +78,7 @@ else:
 
 
 
-# ================================= Ciclo ===============================
+# ================================= Ciclo ===============================================
 
 # Retorna uma lista de nós
 
@@ -168,12 +178,30 @@ print("Coeficiente de clusterização médio:", avg_clustering)
 
 # Encontrar cliques maximais
 cliques = list(nx.find_cliques(G))
-print("Cliques maximos:", cliques)
+cliques_sorted = sorted(cliques, key=len, reverse=True)
+print("Cliques maximos:", cliques_sorted)
 
 # Encontrar o maior clique
 largest_clique = max(cliques, key=len)
 print("Maior clique:", largest_clique)
 
+
+# ================================= Conjunto independente =================================
+
+# Existem 2 códigos que tratam o CI: 
+
+maximal = nx.maximal_independent_set(G)  # NP dificil. Há uma observação no site: Este algoritmo não resolve o problema do conjunto independente máximo.
+aproxCI = nx.approximation.maximum_independent_set(G)
+
+
+maximal_sorted = sorted(maximal, reverse=True)
+aproxCI_sorted = sorted(aproxCI, reverse=True)
+
+print(f"Tamanho do conjunto maximal: {len(maximal_sorted)}")
+print(f"Conjunto maximal ordenado (decrescente): {maximal_sorted}")
+
+print(f"Tamanho do conjunto aproximado: {len(aproxCI_sorted)}")
+print(f"Conjunto aproximado ordenado (decrescente): {aproxCI_sorted}")
 
 
 # ==========================================================================================
