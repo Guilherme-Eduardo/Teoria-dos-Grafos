@@ -3,6 +3,7 @@
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
 
 # Passo 1: Ler o arquivo com pandas (usando 'sep' para separar por espaços)
 df = pd.read_csv("bn-mouse_visual-cortex_2.edges", sep='\s+', header=None, names=["node_1", "node_2"])
@@ -85,6 +86,10 @@ else:
 cicle = sorted (nx.simple_cycles (G))
 max_cicle = cicle[0]
 print (f"O maior ciclo simples possui {len(max_cicle)} e é composto por: {max_cicle}")
+
+cicle = sorted (nx.cycle_basis(G))
+max_cicle = cicle[0]
+print (f"O maior ciclo basis possui {len(max_cicle)} e é composto por: {max_cicle}")
 
 
 # ================================= componente conexa =================================
@@ -173,6 +178,13 @@ avg_clustering = nx.average_clustering(G)
 print (f"Imprimindo clustering: {cluster}")
 print("Coeficiente de clusterização médio:", avg_clustering)
 
+
+# # Kmeans
+
+# # K-means com matriz de adjacência
+# adj_matrix = nx.to_numpy_array(G)
+# kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(adj_matrix)
+# print(f"Labels do K-means: {kmeans.labels_}")
 
 # ================================== Cliques ============================================
 
