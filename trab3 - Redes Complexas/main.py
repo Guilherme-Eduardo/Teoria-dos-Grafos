@@ -4,6 +4,8 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
+from networkx.algorithms.community import k_clique_communities
+
 
 # Passo 1: Ler o arquivo com pandas (usando 'sep' para separar por espaços)
 df = pd.read_csv("bn-mouse_visual-cortex_2.edges", sep='\s+', header=None, names=["node_1", "node_2"])
@@ -186,10 +188,18 @@ print("Coeficiente de clusterização médio:", avg_clustering)
 # Kmeans
 
 # K-means com matriz de adjacência
-adj_matrix = nx.to_numpy_array(G)
-print (f"Matriz: {adj_matrix}")
-kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(adj_matrix)
-print(f"Labels do K-means: {kmeans.labels_}")
+#adj_matrix = nx.to_spicy_sparse_array(G)
+#print (f"Matriz: {adj_matrix}")
+#kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(adj_matrix)
+#print(f"Labels do K-means: {kmeans.labels_}")
+
+from networkx.algorithms.community import girvan_newman
+
+communities = girvan_newman(G)
+
+first_division = next(communities)
+print ("Comunidade encontradas: ", [list(c) for c in first_division])
+
 
 print("\n================================== Cliques ============================================\n")
 
