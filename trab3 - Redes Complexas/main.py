@@ -193,6 +193,7 @@ print(f"Labels do K-means: {kmeans.labels_}")
 
 print("\n================================== Cliques ============================================\n")
 
+
 # Encontrar cliques maximais
 cliques = list(nx.find_cliques(G))
 cliques_sorted = sorted(cliques, key=len, reverse=True)
@@ -201,6 +202,24 @@ print("Cliques maximos:", cliques_sorted)
 # Encontrar o maior clique
 largest_clique = max(cliques, key=len)
 print("Maior clique:", largest_clique)
+
+# Contar o número de cliques
+num_cliques = len(cliques)
+print(f"Quantidade de cliques encontrados: {num_cliques}")
+
+
+# Contar cliques por tamanho
+cliques_por_tamanho = {}
+for clique in cliques:
+    tamanho = len(clique)
+    if tamanho in [2, 3]:  # Filtrar apenas os tamanhos desejados (2 e 3)
+        cliques_por_tamanho[tamanho] = cliques_por_tamanho.get(tamanho, 0) + 1
+
+
+# Exibir a contagem
+for tamanho, quantidade in cliques_por_tamanho.items():
+    print(f"{quantidade} cliques com tamanho {tamanho}")
+
 
 
 print("\n================================= Conjunto independente =================================\n")
