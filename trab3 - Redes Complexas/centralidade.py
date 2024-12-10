@@ -1,19 +1,16 @@
-# Nó com maior centralidade de grau: 10 (valor: 0.16145833333333331)
-# Nó com maior centralidade de proximidade: 82 (valor: 0.35687732342007433)
-# Nó com maior centralidade de intermediação: 5 (valor: 0.44073848620232864)
-
 # ================================ Imports =========================================
+
+
+#Imprime as informações (Centralidade)retiradas de main.py
 
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
-# Passo 1: Ler o arquivo com pandas (usando 'sep' para separar por espaços)
+
 df = pd.read_csv("bn-mouse_visual-cortex_2.edges", sep='\s+', header=None, names=["node_1", "node_2"])
 
-
-# Passo 2: Criar o grafo usando o DataFrame. "node_1" e "node_2" são os vertices.
 G = nx.from_pandas_edgelist(df, "node_1", "node_2", create_using=nx.Graph())
 
 centralidade_grau = 10

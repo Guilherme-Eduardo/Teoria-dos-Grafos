@@ -5,19 +5,20 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from networkx.algorithms.community import k_clique_communities
+from networkx.algorithms.community import girvan_newman
 
 
-# Passo 1: Ler o arquivo com pandas (usando 'sep' para separar por espaços)
+# Ler o arquivo com pandas
 df = pd.read_csv("bn-mouse_visual-cortex_2.edges", sep='\s+', header=None, names=["node_1", "node_2"])
 
 
-# Passo 2: Criar o grafo usando o DataFrame. "node_1" e "node_2" são os vertices.
+# Criar o grafo usando o DataFrame. "node_1" e "node_2" são os vertices.
 G = nx.from_pandas_edgelist(df, "node_1", "node_2", create_using=nx.Graph())
 
 
 print("\n=============================== Tipos de grafos ==========================================\n")
 
-#Se é direcionado
+# Verifica se ele é direcionado
 if (nx.is_directed(G)):
     print ("O grafo analisado é direcionado")
 else: 
@@ -28,14 +29,7 @@ else:
 print("\n================================ Análise das centralidades  ================================\n")
 
 
-# Esse é o passo a passo para cada tipo de centralidade:
-
-# 1 networkX possui os tipos de centralidade -> ele forma uma lista
-# 2 Criamos um dicionario com base nessa lista e ordenamos ela de forma decrescente pelo valor de centralidade (por isso o item[1])
-# 3 pegamos o maior vertice com base na centralidade
-
-# O algoritmo abaixo foi baseado nesse link abaixo que eu achei
-# https://stackoverflow.com/questions/70027288/identify-the-most-central-nodes-in-a-network-using-networkx
+# Analise os tipos de centralidade
 
 
 # Degree Centrality
@@ -60,9 +54,10 @@ most_central_bet = list(betCent_sorted.keys())[0]
 print(f"Nó com maior centralidade de intermediação: {most_central_bet} (valor: {betCent_sorted[most_central_bet]})")
 
 
+
 print("\n=============================== Raio, diametro, periferia e  centro =============================\n")
 
-
+# Verifica se o grafo é conexo. Sendo assim, passa as demais informações sobre
 if nx.is_connected(G):
     print ("Grafo é conectado!")
     radius = nx.radius(G)
@@ -83,43 +78,52 @@ else:
 
 print("\n================================= Ciclo ===============================================\n")
 
-# Retorna uma lista de nós
 
-cicle = sorted (nx.simple_cycles (G))
-max_cicle = cicle[0]
-print (f"O maior ciclo simples possui {len(max_cicle)} e é composto por: {max_cicle}")
-
+# Verifica o maior ciclo
 cicle = sorted (nx.cycle_basis(G))
-max_cicle = cicle[0]
-print (f"O maior ciclo basis possui {len(max_cicle)} e é composto por: {max_cicle}")
+maior_ciclo = max(cicle, key=len)
+print(f"O maior ciclo possui {len(maior_ciclo)} vertices e é composto por: {maior_ciclo}")
+
+
+# Classifica por tamanho de elementos 
+ciclos_por_tamanho = {}
+for ciclo in cicle:
+    tamanho = len(ciclo)
+    ciclos_por_tamanho[tamanho] = ciclos_por_tamanho.get(tamanho, 0) + 1
+
+# Numero total de ciclos do grafo
+total_ciclos = len(cicle)
+print(f"Total de ciclos: {total_ciclos}")
+print (f"Ciclos: {cicle}")
+
+
+print("\nClassificação dos ciclos por tamanho:")
+for tamanho, quantidade in sorted(ciclos_por_tamanho.items()):
+    print(f"{quantidade} ciclos com {tamanho} vértices")
+
 
 
 print("\n================================= componente conexa =================================\n")
 
 # Obtendo as componentes conexas
-connected_components = nx.connected_components(G)
+componente_conexa = nx.connected_components(G)
 
 # Convertendo para lista e ordenando pelo tamanho (do maior para o menor)
-components_list = sorted(connected_components, key=len, reverse=True)
+componentes = sorted(componente_conexa, key=len, reverse=True)
 
 # Imprimindo a maior componente conexa
-if components_list:
-    print(f"Tamanho da maior componente conexa: {len(components_list[0])}")
-    print(f"Formada por: {list(components_list[0])}")
+if componentes:
+    print(f"Tamanho da maior componente conexa: {len(componentes[0])}")
+    print(f"Formada por: {list(componentes[0])}")
 else:
     print("O grafo não possui componentes conexas.")
+
 
 
 print("\n================================= Distribuiçao dos graus ===============================\n")
 
 
-# O site abaixo disponibiliza um algoritmo para ver como está a distribuicao dos graus.
-
-#  Poderia dar um bizu? Serviu como base. ELe plota um grafico que mostra os graus...
-
-# https://networkx.org/documentation/stable/auto_examples/drawing/plot_degree.html
-
-# Encontrando o nó com maior grau (parece ser a mesma coisa do degree centrality)
+# Verificando vertice com maior grau do Grafo
 maior_grau = max(G.degree(), key=lambda x: x[1])  # Retorna (nó, grau)
 
 # Separando o nó e o grau
@@ -129,71 +133,70 @@ print(f"Nó com maior grau: {no}, Grau: {grau}")
 
 
 # Calculando a sequência de graus
-degree_sequence = sorted([d for n, d in G.degree()], reverse=True)
+dist_grau = sorted([d for n, d in G.degree()], reverse=True)
 
-# Configurando o layout do gráfico
+# conf. gráfico
 fig = plt.figure("Distribuição dos Graus", figsize=(12, 8))
 axgrid = fig.add_gridspec(5, 4)
 
-# Subplot 1: Gráfico da sequência de graus
+# Plotando
 ax1 = fig.add_subplot(axgrid[3:, :2])
-ax1.plot(degree_sequence, "b-", marker="o")
+ax1.plot(dist_grau, "b-", marker="o")
 ax1.set_title("Distribuição dos Graus")
 ax1.set_ylabel("Grau")
 ax1.set_xlabel("Classificação")
 
 # Exibindo o gráfico
 plt.tight_layout()
+plt.savefig("Grau_vertice.png", dpi=300, bbox_inches="tight")
+plt.show()
 
 
-print("\n================================ Arvore geradora e clusters =====================================\n")
+print("\n================================ Arvore geradora =====================================\n")
 
-# Arvore gerado minimas ? nao entendi a relação disso com redes complexas....
+# Verifica a árvore geradora 
+T = nx.minimum_spanning_tree (G)
+print(list(T.nodes()))
 
-
-# Clusterização. Fiquei em duvida se ele separa por grupos. Documentação está meio magra
-
-# Perguntei pro chat e ele me disse isso
-
-# Coeficiente de Clusterização Local
-# Fórmula:
-# Para um nó uuu com kkk vizinhos, o coeficiente de clusterização local C(u)C(u)C(u) é definido como:
-
-# C(u)=nuˊmero de arestas reais entre os vizinhos de unuˊmero maˊximo de arestas possıˊveis entre os vizinhos de uC(u) = \frac{\text{número de arestas reais entre os vizinhos de } u}{\text{número máximo de arestas possíveis entre os vizinhos de } u}C(u)=nuˊmero maˊximo de arestas possıˊveis entre os vizinhos de unuˊmero de arestas reais entre os vizinhos de u​
-
-# Componentes da Fórmula:
-# Número de Arestas Reais:
-
-# O número de arestas entre os vizinhos de uuu.
-# Número Máximo de Arestas Possíveis:
-
-# Para kkk vizinhos, o número máximo de arestas possíveis entre eles é: k(k−1)2\frac{k(k-1)}{2}2k(k−1)​
-# Valores de C(u)C(u)C(u):
-# C(u)=1.0C(u) = 1.0C(u)=1.0: Todos os vizinhos de uuu estão completamente conectados entre si (formam um clique completo).
-# 0.0<C(u)<1.00.0 < C(u) < 1.00.0<C(u)<1.0: Parte dos vizinhos de uuu está conectada.
-# C(u)=0.0C(u) = 0.0C(u)=0.0: Nenhum vizinho de uuu está conectado a outro vizinho.
+print ("Imprimindo arvore geradora")
+print (T)
 
 
-cluster = nx.clustering (G)
-avg_clustering = nx.average_clustering(G)
-cluster_sorted = sorted(cluster.items(), key=lambda item: item[1], reverse=True)
+plt.figure(figsize=(10,10))
+pos = nx.spring_layout(T, seed=42)
+nx.draw(
+    G,
+    pos,
+    with_labels=True,
+    node_color="blue",
+    node_size=150,
+    font_color="white",
+    font_size=10,
+)
+plt.title("Arvore Geradora")
+plt.savefig("Arvore Geradora.png", dpi=300, bbox_inches="tight")
+plt.show()
 
-# Exibir os nós e seus valores de clusterização em ordem decrescente
-for node, clust_value in cluster_sorted:
-    print(f"Vertice: {node}, Coeficiente de Clusterização: {clust_value}")
-
-print("Coeficiente de clusterização médio:", avg_clustering)
 
 
-# Kmeans
+print("\n================================= Hubs =================================\n")
+ 
+# Calcula os hubs conforme funcao hits
+hubs, _ = nx.hits(G, max_iter=100, tol=1e-8, normalized=True)
 
-# K-means com matriz de adjacência
-#adj_matrix = nx.to_spicy_sparse_array(G)
-#print (f"Matriz: {adj_matrix}")
-#kmeans = KMeans(n_clusters=2, random_state=0, n_init="auto").fit(adj_matrix)
-#print(f"Labels do K-means: {kmeans.labels_}")
+# Identificar os maiores hubs
+hubs_sorted = sorted(hubs.items(), key=lambda x: x[1], reverse=True)
 
-from networkx.algorithms.community import girvan_newman
+# Exibir os maiores hubs
+print("Maiores Hubs:")
+for node, score in hubs_sorted:
+    print(f"Nó {node}: Pontuação de Hub {score:.4f}")
+
+
+
+print("\n================================ clusters =====================================\n")
+
+# Cria os clusters conforme o algoritmo de Girva-Newman
 
 communities = girvan_newman(G)
 
@@ -201,19 +204,46 @@ first_division = next(communities)
 print ("Comunidade encontradas: ", [list(c) for c in first_division])
 
 
+# Divisão em 2 clusters
+cluster1 = list(first_division[0])
+cluster2 = list(first_division[1])
+
+print ("Cluster 1: ", cluster1)
+print ("Cluster 2: ", cluster2)
+
+
+node_colors = [
+    "red" if node in cluster1 else "blue" if node in cluster2 else "gray" for node in G.nodes()
+]
+
+plt.figure(figsize=(8, 6))
+pos = nx.spring_layout(G, seed=42)  # Layout para o grafo
+nx.draw(
+    G,
+    pos,
+    with_labels=True,
+    node_color=node_colors,
+    node_size=200,
+    font_color="white",
+    font_size=10,
+)
+plt.title("Separação por clusters")
+plt.savefig("clusters.png", dpi=300, bbox_inches="tight")
+plt.show()
+
+
 print("\n================================== Cliques ============================================\n")
 
 
-# Encontrar cliques maximais
+# Verifica os cliques do grafo, a quantidade e o tamanho 
+
 cliques = list(nx.find_cliques(G))
 cliques_sorted = sorted(cliques, key=len, reverse=True)
 print("Cliques maximos:", cliques_sorted)
 
-# Encontrar o maior clique
 largest_clique = max(cliques, key=len)
 print("Maior clique:", largest_clique)
 
-# Contar o número de cliques
 num_cliques = len(cliques)
 print(f"Quantidade de cliques encontrados: {num_cliques}")
 
@@ -234,9 +264,9 @@ for tamanho, quantidade in cliques_por_tamanho.items():
 
 print("\n================================= Conjunto independente =================================\n")
 
-# Existem 2 códigos que tratam o CI: 
+# Verifica os conjuntos independentes (subconjunto aproximado) = NP-Dificil
 
-maximal = nx.maximal_independent_set(G)  # NP dificil. Há uma observação no site: Este algoritmo não resolve o problema do conjunto independente máximo.
+maximal = nx.maximal_independent_set(G)
 aproxCI = nx.approximation.maximum_independent_set(G)
 
 
@@ -250,30 +280,22 @@ print(f"Tamanho do conjunto aproximado: {len(aproxCI_sorted)}")
 print(f"Conjunto aproximado ordenado (decrescente): {aproxCI_sorted}")
 
 
-# ==========================================================================================
+print("\n================================= Densidade =================================\n")
 
+densidade = nx.density(G)
 
-
-# Pergunta que devemos responder(esta no texto do moodle): qual modelo de grafo melhor representa a rede escolhida?
-
+print (f"A densidade do grafo é: {densidade}")
 
 
 #================================== Plotando o grafo ==============================================
 
 
-# Info para plotar o grafo
-# Isso está em : https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx.html#networkx.drawing.nx_pylab.draw_networkx
-# with_labels: Defina como Verdadeiro para desenhar rótulos nos nós
-# Node_size: tamanho dos nós
-# node_color = cor
-# lista nodelist (padrão=list(G)) = Desenhar apenas nós especificados
-
-
-
 plt.figure(figsize=(12,12))
 nx.draw_networkx(G, with_labels=True, node_size=200, node_color='skyblue', font_size=8, font_weight='bold')
 
-# Exibir o grafo. Na doc do networkX fala para usarmos juntamente com o matplotlib
+
+plt.title("Grafo")
+plt.savefig("Grafo.png", dpi=300, bbox_inches="tight")
 plt.show()
 
 print(f'Número de nós: {G.number_of_nodes()}')
